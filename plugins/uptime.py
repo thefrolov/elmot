@@ -11,10 +11,11 @@ class UptimePlugin(Plugin):
 		print '*', self.name, 'loaded'
 
 	def execute(self, command = None, args = None):
-		stdin, stdout = popen2('uptime')
-		uptime = stdout.read().split(',')[0].strip().split()
-		days = uptime[2]
-		time = uptime[0]
-		hours, minutes, seconds = time.split(':')
+		f = open('/proc/uptime')
+		seconds = int(f.read().split()[0].split('.')[0])
+		f.close()
+		minutes, seconds = divmod(seconds, 60)
+		hours, minutes = divmod(minutes, 60)
+		days, hours = divmod(hours, 24)
 		uptime = 'My uptime is %s days, %s hours, %s minutes, %s seconds' % (days, hours, minutes, seconds)
 		return uptime
