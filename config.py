@@ -17,6 +17,7 @@ AUTHORIZED_ACCOUNTS = ['']
 
 # logfile
 LOG_PATH = BASE_PATH+'/elmot.log'
+ERROR_LOG_PATH = BASE_PATH+'/elmot.err'
 
 # run elmot as user (do not use root)
 RUN_UID = pwd.getpwnam("root").pw_uid

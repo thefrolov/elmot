@@ -1,0 +1,18 @@
+ELMOT (Easy Linux Management Over Twitter) is simple project to tweet anything
+by your linux server automatically. Use some plugins or write own.
+
+Installing on Debian based Linux:
+
+-------------------------------------------------------
+cd /opt
+git clone git://github.com/thefrolov/elmot.git
+cd elmot
+# edit config with your favorite editor. Heplful howto here -> http://cl.ly/8xZu
+vim config.py
+# add to rc.d
+ln -s /opt/elmot/bin/elmot /etc/init.d/elmot && update-rc.d elmot defaults
+# let's run
+/etc/init.d/elmot start
+
+
+P.S. This is unfinished readme. I'l solve this problem soon.
