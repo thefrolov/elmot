@@ -1,4 +1,4 @@
-#  Indentation fixed
+# -*- coding: utf-8 -*-
 import sys
 import time
 from threading import Thread
@@ -8,6 +8,9 @@ import socket
 from datetime import datetime
 
 # map of server with true flag
+# format:
+# [ip, port, True]
+
 SERVERS = [
     ['10.2.3.3', 22, True],
     ['8.8.8.8', 53, True]
@@ -33,16 +36,16 @@ class ConnTestPlugin(Plugin, Thread):
             return False
         sock.close()
 
-    def run(self, command = None, args = None):
+    def run(self, message = None):
         while True:
             for server in SERVERS:
                 if not self.check(server[0], server[1]):
                     if server[2]:
                         self.api.tweet(str(datetime.now()).split('.')[0] + ' connection lost with ' + server[0])
                         server[2] = False
-                    else:
-                        if not self.flag:
-                            self.api.tweet(str(datetime.now()).split('.')[0] + ' connection established with ' + server[0])
-                            server[2] = True
+                else:
+                    if not server[2]:
+                        self.api.tweet(str(datetime.now()).split('.')[0] + ' connection established with ' + server[0])
+                        server[2] = True
 			
             time.sleep(30)

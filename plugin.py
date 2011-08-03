@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 class Plugin(object):
     name = 'undefined'
     keyword = 'undefined'
@@ -11,7 +13,7 @@ class Plugin(object):
     def __init__(self):
         print '*', self.name, 'loaded'
     
-    def execute(self, cmd, args):
+    def execute(self, message):
         pass
 
     # run method only for non controlled plugins

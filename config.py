@@ -1,5 +1,7 @@
 import os
 import pwd
+# -*- coding: utf-8 -*-
+
 # Twitter credentials
 CONSUMER_KEY = ''
 CONSUMER_SECRET = ''
@@ -16,8 +18,11 @@ PID_PATH = BASE_PATH+'/elmot.pid'
 AUTHORIZED_ACCOUNTS = ['']
 
 # logfile
-LOG_PATH = BASE_PATH+'/elmot.log'
-ERROR_LOG_PATH = BASE_PATH+'/elmot.err'
+LOG_PATH = BASE_PATH+'/log/elmot.log'
+ERROR_LOG_PATH = BASE_PATH+'/log/elmot.err'
+
+# type None to disable incoming message log
+INCOMING_MESSAGE_LOG = BASE_PATH+'/log/incoming.log'
 
 # run elmot as user (do not use root)
 RUN_UID = pwd.getpwnam("root").pw_uid

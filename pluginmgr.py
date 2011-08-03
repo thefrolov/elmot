@@ -3,6 +3,7 @@ from os.path import splitext
 from os import listdir
 from config import BASE_PATH
 import sys
+# -*- coding: utf-8 -*-
 
 class PluginManager():
 	
@@ -18,6 +19,8 @@ class PluginManager():
  
         for plugin in Plugin.__subclasses__():
             p = plugin()
+            if p.keyword == 'default':
+                self.default_plugin = p
             if p.controlled:
                 self.plugins.append(p)
             else:
@@ -28,4 +31,4 @@ class PluginManager():
         for plugin in self.plugins:
             if (plugin.keyword == keyword):
                 return plugin
-
+        return self.default_plugin

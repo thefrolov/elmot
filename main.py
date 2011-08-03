@@ -1,8 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from pluginmgr import PluginManager
 from api import Api
 from daemon import Daemon
+from message import Message
 from config import BASE_PATH, PID_PATH, LOG_PATH, ERROR_LOG_PATH
 import sys
 
@@ -13,24 +15,15 @@ class ElmotDaemon(Daemon):
         mgr = PluginManager()
         api = Api()
         for mes in api.listenMessages():
-            if mes.text.count(' ') >= 2:
-                keyword, command, args = mes.text.split(None, 2)
-	        args = args.split()
-            elif mes.text.count(' ') == 1:
-                keyword, args = mes.text.split(None, 1)
-                args = args.split()
-                command = None
-            elif mes.text.count(' ') == 0:
-                keyword = mes.text
-                command = None
-                args = None
-            plugin = mgr.getPlugin(keyword)
+            m = Message(mes.text,mes.sender)
+            plugin = mgr.getPlugin(m.keyword)
+
             if plugin.action == 2:
-                api.tweet(plugin.execute(command,args))
+                api.tweet(plugin.execute(m))
             elif plugin.action == 1:
-                api.sendDirectMessage(mes.sender.id,plugin.execute(command,args))
+                api.sendDirectMessage(m.sender.id, plugin.execute(m))
             elif plugin.action == 0:
-                plugin.execute(command,args)
+                plugin.execute(m)
 
 
 if __name__ == "__main__":

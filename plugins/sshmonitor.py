@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 import time
 from threading import Thread
@@ -24,7 +25,7 @@ class SshMonitorPlugin(Plugin, Thread):
                 yield line.split(': ')[1].split('port')[0]
 
 
-    def run(self, command = None, args = None):
+    def run(self):
         logfile = open('/var/log/auth.log')
         loglines = self.follow(logfile)
         

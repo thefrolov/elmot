@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from plugin import Plugin
 
 import sys
@@ -10,7 +11,7 @@ class UptimePlugin(Plugin):
     def __init__(self):
         Plugin.__init__(self)
 
-    def execute(self, command = None, args = None):
+    def execute(self, message = None):
         f = open('/proc/uptime')
         seconds = int(f.read().split()[0].split('.')[0])
         f.close()

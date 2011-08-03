@@ -1,7 +1,7 @@
 import tweepy
 import sys, time
 from config import *
-
+# -*- coding: utf-8 -*-
 
 class Api:
     class __impl:
