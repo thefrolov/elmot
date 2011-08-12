@@ -27,7 +27,7 @@ class ConnTestPlugin(Plugin, Thread):
 	
     def check(self,remote_host,remote_port):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.settimeout(10)
+        sock.settimeout(20)
         try:
             sock.connect((remote_host, remote_port))
             return True

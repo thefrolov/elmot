@@ -12,6 +12,7 @@ class Message:
     def __init__(self, text, sender):
         self.date = datetime.now()
         self.message_text = text.lower().encode('utf-8')
+        print self.message_text
         self.sender = sender 
         if self.message_text.count(' ') >= 2:
             self.keyword, self.command, self.args = self.message_text.split(None, 2)
